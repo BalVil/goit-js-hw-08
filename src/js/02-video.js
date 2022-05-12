@@ -1,17 +1,9 @@
 const iframe = document.querySelector('#vimeo-player');
-const player = new Vimeo.Player('iframe');
+const player = new Vimeo.Player(iframe);
 
-// player.on('play', function () {
-//   console.log('played the video!');
-// });
-
-// player.getVideoTitle().then(function (title) {
-//   console.log('title:', title);
-// });
-
-const onPlay = function (data) {
+const onTimeupdate = function (data) {
   console.log(data);
-  // data is an object containing properties specific to that event
+  localStorage.setItem('videoplayer-current-time', 'data');
 };
 
-player.on('play', onPlay);
+player.on('timeupdate', onTimeupdate);
