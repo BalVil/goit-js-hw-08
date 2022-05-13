@@ -16,21 +16,8 @@ resumePlayback(currentTime);
 
 function resumePlayback(time) {
   if (time) {
-    player
-      .setCurrentTime(time)
-      .then(function () {
-        return player.play();
-      })
-      .catch(function (error) {
-        switch (error.name) {
-          case 'RangeError':
-            console.log('the time was less than 0 or greater than the video’s duration');
-            break;
-
-          default:
-            console.log('some other error occurred');
-            break;
-        }
-      });
+    player.setCurrentTime(time).then(function () {
+      return player.play();
+    });
   }
 }
