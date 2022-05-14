@@ -584,9 +584,9 @@ function onFormSubmit(evt) {
     return console.log('Please fill in all the fields!');
   }
 
+  console.log(formData);
   evt.target.reset();
   localStorage.removeItem(LOCALSTORAGE_KEY);
-  console.log(formData);
 }
 
 function onFormInput(evt) {
@@ -638,7 +638,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50007" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57086" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

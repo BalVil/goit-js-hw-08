@@ -21,11 +21,11 @@ function onFormSubmit(evt) {
   if (inputValue === '' || textareaValue === '') {
     return console.log('Please fill in all the fields!');
   }
+  console.log(formData);
 
   evt.target.reset();
 
   localStorage.removeItem(LOCALSTORAGE_KEY);
-  console.log(formData);
 }
 
 function onFormInput(evt) {
