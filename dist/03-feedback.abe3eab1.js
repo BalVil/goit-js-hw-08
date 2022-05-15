@@ -567,10 +567,8 @@ var _lodash = _interopRequireDefault(require("lodash.throttle"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const formRef = document.querySelector('.feedback-form');
-const emailRef = document.querySelector('.feedback-form input');
-const messageRef = document.querySelector('.feedback-form textarea');
 const LOCALSTORAGE_KEY = 'feedback-form-state';
-let formData = {};
+const formData = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)) || {};
 updateFormContent();
 formRef.addEventListener('submit', onFormSubmit);
 formRef.addEventListener('input', (0, _lodash.default)(onFormInput, 500));
@@ -584,9 +582,9 @@ function onFormSubmit(evt) {
     return console.log('Please fill in all the fields!');
   }
 
-  console.log(formData);
   evt.target.reset();
   localStorage.removeItem(LOCALSTORAGE_KEY);
+  console.log(formData);
 }
 
 function onFormInput(evt) {
@@ -603,8 +601,8 @@ function updateFormContent() {
         email,
         message
       } = JSON.parse(savedData);
-      emailRef.value = email || '';
-      messageRef.value = message || '';
+      formRef.elements.email.value = email || '';
+      formRef.elements.message.value = message || '';
     }
   } catch (error) {
     console.error('Set state error: ', error.message);
@@ -638,7 +636,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57086" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50697" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

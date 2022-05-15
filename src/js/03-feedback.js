@@ -1,11 +1,9 @@
 import throttle from 'lodash.throttle';
 
 const formRef = document.querySelector('.feedback-form');
-const emailRef = document.querySelector('.feedback-form input');
-const messageRef = document.querySelector('.feedback-form textarea');
 
 const LOCALSTORAGE_KEY = 'feedback-form-state';
-let formData = {};
+const formData = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)) || {};
 
 updateFormContent();
 
@@ -21,11 +19,11 @@ function onFormSubmit(evt) {
   if (inputValue === '' || textareaValue === '') {
     return console.log('Please fill in all the fields!');
   }
-  console.log(formData);
 
   evt.target.reset();
 
   localStorage.removeItem(LOCALSTORAGE_KEY);
+  console.log(formData);
 }
 
 function onFormInput(evt) {
@@ -39,8 +37,9 @@ function updateFormContent() {
   try {
     if (savedData) {
       const { email, message } = JSON.parse(savedData);
-      emailRef.value = email || '';
-      messageRef.value = message || '';
+
+      formRef.elements.email.value = email || '';
+      formRef.elements.message.value = message || '';
     }
   } catch (error) {
     console.error('Set state error: ', error.message);
