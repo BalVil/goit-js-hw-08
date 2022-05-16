@@ -568,7 +568,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const formRef = document.querySelector('.feedback-form');
 const LOCALSTORAGE_KEY = 'feedback-form-state';
-const formData = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)) || {};
+const savedData = localStorage.getItem(LOCALSTORAGE_KEY);
+let formData = JSON.parse(savedData) || {};
 updateFormContent();
 formRef.addEventListener('submit', onFormSubmit);
 formRef.addEventListener('input', (0, _lodash.default)(onFormInput, 500));
@@ -579,12 +580,13 @@ function onFormSubmit(evt) {
   const textareaValue = evt.target.message.value;
 
   if (inputValue === '' || textareaValue === '') {
-    return console.log('Please fill in all the fields!');
+    return console.log('Please fill in all the fields!'); // return alert('Please fill in all the fields!');
   }
 
   evt.target.reset();
   localStorage.removeItem(LOCALSTORAGE_KEY);
   console.log(formData);
+  formData = {};
 }
 
 function onFormInput(evt) {
@@ -593,8 +595,6 @@ function onFormInput(evt) {
 }
 
 function updateFormContent() {
-  const savedData = localStorage.getItem(LOCALSTORAGE_KEY);
-
   try {
     if (savedData) {
       const {
@@ -636,7 +636,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50697" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53491" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
